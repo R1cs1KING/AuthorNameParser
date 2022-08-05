@@ -1,7 +1,5 @@
 import model.ParsedName;
 
-import javax.lang.model.element.Name;
-
 public class AuthorNameParser {
 
     ParsedName parsedName;
@@ -16,6 +14,7 @@ public class AuthorNameParser {
                 splitNameToParseOnComma(nameToParse);
             } else  {
                 System.out.println("It does not have a comma");
+                // TODO: implement code to detect pattern, where a whitespace is followed by a lower case character
                 // regex checks if the nameToParse has any other characters than latin letters
                 if (nameToParse.matches("\\p{IsLatin}")) {
                     // TODO: implement cases when there is no special character included
@@ -56,5 +55,9 @@ public class AuthorNameParser {
 
         parsedName.setLastName(lastName);
         parsedName.setFirstName(firstName);
+    }
+
+    private void splitNameToParseOnFirstLowercaseAfterWhiteSpace(String nameToString) {
+        // TODO: implement
     }
 }
