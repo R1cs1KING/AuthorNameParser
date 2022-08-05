@@ -1,5 +1,7 @@
 import model.ParsedName;
 
+import javax.lang.model.element.Name;
+
 public class AuthorNameParser {
 
     ParsedName parsedName;
@@ -10,7 +12,13 @@ public class AuthorNameParser {
 
     public ParsedName parseName(String nameToParse) {
         if (isInputNameToParseConsistsValidCharacters(nameToParse)) {
-
+            if (nameToParse.contains(",")) {
+                splitNameToParseOnComma(nameToParse);
+            } else  {
+                System.out.println("It does not have a comma");
+            }
+        } else {
+            // TODO: return error message to user
         }
 
         return parsedName;
@@ -28,9 +36,11 @@ public class AuthorNameParser {
         return false;
     }
 
-    private boolean hasNameToParseComma(String nameToParse) {
+    private void splitNameToParseOnComma(String nameToParse) {
+        String lastName = nameToParse.substring(0, nameToParse.indexOf(","));
+        String firstName = nameToParse.substring(nameToParse.indexOf(",") + 1).trim();
 
-
-        return false;
+        parsedName.setLastName(lastName);
+        parsedName.setFirstName(firstName);
     }
 }
