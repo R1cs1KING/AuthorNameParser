@@ -19,7 +19,7 @@ public class AuthorNameParser {
                 // regex checks if the nameToParse has any other characters than latin letters
                 if (nameToParse.matches("\\p{IsLatin}")) {
                     // TODO: implement cases when there is no special character included
-                } {
+                } else {
                     splitNameToParseOnLastSpace(nameToParse);
                 }
             }
