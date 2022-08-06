@@ -2,6 +2,9 @@ package AuthorNameParserApp;
 
 import AuthorNameParserApp.model.ParsedName;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AuthorNameParser {
 
     ParsedName parsedName;
@@ -15,16 +18,15 @@ public class AuthorNameParser {
             if (nameToParse.contains(",")) {
                 splitNameToParseOnComma(nameToParse);
             } else  {
-                // TODO: implement code to detect pattern, where a whitespace is followed by a lower case character
-                // regex checks if the nameToParse has any other characters than latin letters
-                if (nameToParse.matches("\\p{IsLatin}")) {
-                    // TODO: implement cases when there is no special character included
+                // regex to find part of name where whitespace is followed by lowercase characters
+                if (nameToParse.matches(".*\\s[a-z].*")) {
+                    splitNameToParseOnFirstLowercaseAfterWhiteSpace(nameToParse);
                 } else {
                     splitNameToParseOnLastSpace(nameToParse);
                 }
             }
         } else {
-            // TODO: return error message to user
+            // TODO: return error message to user, maybe exception could be thrown when checking the argument
         }
 
         return parsedName;
@@ -37,8 +39,6 @@ public class AuthorNameParser {
         if (nameToParse.matches("[\\p{IsLatin}.'\\-\\s]*,?[\\p{IsLatin}.'\\-\\s]*")) {
             return true;
         }
-        // TODO: error message to user
-        System.out.println("The inserted name contains invalid characters");
         return false;
     }
 
@@ -58,7 +58,23 @@ public class AuthorNameParser {
         parsedName.setFirstName(firstName);
     }
 
-    private void splitNameToParseOnFirstLowercaseAfterWhiteSpace(String nameToString) {
-        // TODO: implement
+    private void splitNameToParseOnFirstLowercaseAfterWhiteSpace(String nameToParse) {
+        int indexOfFirstLowercaseFollowingWhitespace = indexOfFirstPatternOccurrence("\\s[a-z]", nameToParse);
+
+        String lastName = nameToParse.substring(indexOfFirstLowercaseFollowingWhitespace).trim();
+        String firstName = nameToParse.substring(0, indexOfFirstLowercaseFollowingWhitespace);
+
+        parsedName.setLastName(lastName);
+        parsedName.setFirstName(firstName);
+    }
+
+    private int indexOfFirstPatternOccurrence(String regexPattern, String string) {
+        Pattern pattern = Pattern.compile("\\s[a-z]");
+        Matcher matcher = pattern.matcher(string);
+        if (matcher.find()) {
+            return matcher.start();
+        }
+
+        return -1;
     }
 }
