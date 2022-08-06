@@ -114,4 +114,13 @@ public class AuthorNameParserTest {
         Assertions.assertEquals("Günther", parsedName.getFirstName());
         Assertions.assertEquals("von Berliner", parsedName.getLastName());
     }
+
+    @Test
+    public void testParseInvalidName() {
+        String nameToParse = "Günther 342r";
+        AuthorNameParser authorNameParser = new AuthorNameParser();
+        ParsedName parsedName = authorNameParser.parseName(nameToParse);
+
+        Assertions.assertNull(parsedName);
+    }
 }

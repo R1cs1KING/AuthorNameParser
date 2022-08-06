@@ -27,6 +27,7 @@ public class AuthorNameParser {
             }
         } else {
             // TODO: return error message to user, maybe exception could be thrown when checking the argument
+            return null;
         }
 
         return parsedName;
