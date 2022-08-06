@@ -46,16 +46,14 @@ public class AuthorNameParser {
         String lastName = nameToParse.substring(0, nameToParse.indexOf(","));
         String firstName = nameToParse.substring(nameToParse.indexOf(",") + 1).trim();
 
-        parsedName.setLastName(lastName);
-        parsedName.setFirstName(firstName);
+        setParsedName(firstName, lastName);
     }
 
     private void splitNameToParseOnLastSpace(String nameToParse) {
         String lastName = nameToParse.substring(nameToParse.lastIndexOf(" ") + 1).trim();
         String firstName = nameToParse.substring(0, nameToParse.lastIndexOf(" "));
 
-        parsedName.setLastName(lastName);
-        parsedName.setFirstName(firstName);
+        setParsedName(firstName, lastName);
     }
 
     private void splitNameToParseOnFirstLowercaseAfterWhiteSpace(String nameToParse) {
@@ -64,17 +62,22 @@ public class AuthorNameParser {
         String lastName = nameToParse.substring(indexOfFirstLowercaseFollowingWhitespace).trim();
         String firstName = nameToParse.substring(0, indexOfFirstLowercaseFollowingWhitespace);
 
-        parsedName.setLastName(lastName);
-        parsedName.setFirstName(firstName);
+        setParsedName(firstName, lastName);
     }
 
     private int indexOfFirstPatternOccurrence(String regexPattern, String string) {
         Pattern pattern = Pattern.compile("\\s[a-z]");
         Matcher matcher = pattern.matcher(string);
+
         if (matcher.find()) {
             return matcher.start();
         }
 
         return -1;
+    }
+
+    private void setParsedName(String firstName, String lastName) {
+        parsedName.setLastName(lastName);
+        parsedName.setFirstName(firstName);
     }
 }

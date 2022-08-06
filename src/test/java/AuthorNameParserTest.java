@@ -104,4 +104,14 @@ public class AuthorNameParserTest {
         Assertions.assertEquals("Dutch", parsedName.getFirstName());
         Assertions.assertEquals("van der Linde", parsedName.getLastName());
     }
+
+    @Test
+    public void testParseGermanName() {
+        String nameToParse = "Günther von Berliner";
+        AuthorNameParser authorNameParser = new AuthorNameParser();
+        ParsedName parsedName = authorNameParser.parseName(nameToParse);
+
+        Assertions.assertEquals("Günther", parsedName.getFirstName());
+        Assertions.assertEquals("von Berliner", parsedName.getLastName());
+    }
 }
