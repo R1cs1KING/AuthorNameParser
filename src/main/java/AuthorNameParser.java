@@ -1,3 +1,5 @@
+package main.java;
+
 import model.ParsedName;
 
 public class AuthorNameParser {
