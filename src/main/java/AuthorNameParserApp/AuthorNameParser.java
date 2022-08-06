@@ -2,6 +2,7 @@ package AuthorNameParserApp;
 
 import AuthorNameParserApp.model.ParsedName;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,11 @@ public class AuthorNameParser {
         parsedName = new ParsedName();
     }
 
-    public ParsedName parseName(String nameToParse) {
+    public Optional<ParsedName> parseName(String nameToParse) {
+        if (nameToParse == null || nameToParse.isEmpty()) {
+            return Optional.empty();
+        }
+
         if (isInputNameToParseConsistsValidCharacters(nameToParse)) {
             if (nameToParse.contains(",")) {
                 splitNameToParseOnComma(nameToParse);
@@ -26,11 +31,10 @@ public class AuthorNameParser {
                 }
             }
         } else {
-            // TODO: return error message to user, maybe exception could be thrown when checking the argument
-            return null;
+            return Optional.empty();
         }
 
-        return parsedName;
+        return Optional.of(parsedName);
     }
 
     private boolean isInputNameToParseConsistsValidCharacters(String nameToParse) {
