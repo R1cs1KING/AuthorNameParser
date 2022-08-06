@@ -1,4 +1,4 @@
-package model;
+package AuthorNameParserApp.model;
 
 public class ParsedName {
 

@@ -1,12 +1,12 @@
-package main.java;
+package AuthorNameParserApp;
 
-import model.ParsedName;
+import AuthorNameParserApp.model.ParsedName;
 
 public class AuthorNameParser {
 
     ParsedName parsedName;
 
-    AuthorNameParser() {
+    public AuthorNameParser() {
         parsedName = new ParsedName();
     }
 
