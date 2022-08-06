@@ -13,6 +13,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("Rahul", parsedName.get().getFirstName());
         Assertions.assertEquals("Kumar", parsedName.get().getLastName());
     }
@@ -23,6 +24,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("CH Ravindra", parsedName.get().getFirstName());
         Assertions.assertEquals("Reddy", parsedName.get().getLastName());
     }
@@ -33,6 +35,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("CH Ravindra", parsedName.get().getFirstName());
         Assertions.assertEquals("Reddy", parsedName.get().getLastName());
     }
@@ -43,6 +46,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("Banothu", parsedName.get().getFirstName());
         Assertions.assertEquals("Raju", parsedName.get().getLastName());
     }
@@ -53,6 +57,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("R.", parsedName.get().getFirstName());
         Assertions.assertEquals("Jaiswal", parsedName.get().getLastName());
     }
@@ -63,6 +68,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("R.", parsedName.get().getFirstName());
         Assertions.assertEquals("Jaiswal", parsedName.get().getLastName());
     }
@@ -73,6 +79,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("Søren", parsedName.get().getFirstName());
         Assertions.assertEquals("Ålbæk", parsedName.get().getLastName());
     }
@@ -83,6 +90,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("Antonio", parsedName.get().getFirstName());
         Assertions.assertEquals("d'Angelo", parsedName.get().getLastName());
     }
@@ -93,6 +101,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("Lars", parsedName.get().getFirstName());
         Assertions.assertEquals("Larsen-Jensen", parsedName.get().getLastName());
     }
@@ -103,6 +112,7 @@ public class AuthorNameParserTest {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
+        Assertions.assertTrue(parsedName.isPresent());
         Assertions.assertEquals("Dutch", parsedName.get().getFirstName());
         Assertions.assertEquals("van der Linde", parsedName.get().getLastName());
     }
@@ -114,7 +124,6 @@ public class AuthorNameParserTest {
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
         Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertFalse(parsedName.isEmpty());
         Assertions.assertEquals("Günther", parsedName.get().getFirstName());
         Assertions.assertEquals("von Berliner", parsedName.get().getLastName());
     }
@@ -126,7 +135,6 @@ public class AuthorNameParserTest {
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
         Assertions.assertFalse(parsedName.isPresent());
-        Assertions.assertTrue(parsedName.isEmpty());
     }
 
     @Test
@@ -136,16 +144,13 @@ public class AuthorNameParserTest {
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
         Assertions.assertFalse(parsedName.isPresent());
-        Assertions.assertTrue(parsedName.isEmpty());
     }
 
     @Test
     public void testParseNameWithNull() {
-        String nameToParse = null;
         AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
+        Optional<ParsedName> parsedName = authorNameParser.parseName(null);
 
         Assertions.assertFalse(parsedName.isPresent());
-        Assertions.assertTrue(parsedName.isEmpty());
     }
 }
