@@ -41,10 +41,7 @@ public class AuthorNameParser {
         // regex accepts latin characters
         // and the following special characters: .; '; - and space
         // it can contain maximum one: ,
-        if (nameToParse.matches("[\\p{IsLatin}.'\\-\\s]*,?[\\p{IsLatin}.'\\-\\s]*")) {
-            return true;
-        }
-        return false;
+        return nameToParse.matches("[\\p{IsLatin}.'\\-\\s]*,?[\\p{IsLatin}.'\\-\\s]*");
     }
 
     private void splitNameToParseOnComma(String nameToParse) {
@@ -71,7 +68,7 @@ public class AuthorNameParser {
     }
 
     private int indexOfFirstPatternOccurrence(String regexPattern, String string) {
-        Pattern pattern = Pattern.compile("\\s[a-z]");
+        Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(string);
 
         if (matcher.find()) {
