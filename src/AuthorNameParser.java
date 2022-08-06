@@ -13,7 +13,6 @@ public class AuthorNameParser {
             if (nameToParse.contains(",")) {
                 splitNameToParseOnComma(nameToParse);
             } else  {
-                System.out.println("It does not have a comma");
                 // TODO: implement code to detect pattern, where a whitespace is followed by a lower case character
                 // regex checks if the nameToParse has any other characters than latin letters
                 if (nameToParse.matches("\\p{IsLatin}")) {
