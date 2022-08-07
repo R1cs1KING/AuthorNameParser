@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 public class AuthorNameParser {
 
+    public static void main(String[] args) { }
+
     ParsedName parsedName;
 
     public AuthorNameParser() {
