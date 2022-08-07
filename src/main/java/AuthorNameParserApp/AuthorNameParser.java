@@ -38,9 +38,7 @@ public class AuthorNameParser {
     }
 
     private boolean isInputNameToParseConsistsValidCharacters(String nameToParse) {
-        // regex accepts latin characters
-        // and the following special characters: .; '; - and space
-        // it can contain maximum one: ,
+        // accepted characters: latin characters; .; '; -; space and a singular ,
         return nameToParse.matches("[\\p{IsLatin}.'\\-\\s]*,?[\\p{IsLatin}.'\\-\\s]*");
     }
 
