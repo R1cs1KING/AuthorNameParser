@@ -9,123 +9,66 @@ public class AuthorNameParserTest {
 
     @Test
     public void testParseTwoPartName() {
-        String nameToParse = "Rahul Kumar";
+        testName("Rahul Kumar", "Rahul", "Kumar");
+    }
+
+    private static void testName(String nameToParse, String Rahul, String Kumar) {
         AuthorNameParser authorNameParser = new AuthorNameParser();
         Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
 
         Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Rahul", parsedName.get().getFirstName());
-        Assertions.assertEquals("Kumar", parsedName.get().getLastName());
+        Assertions.assertEquals(Rahul, parsedName.get().getFirstName());
+        Assertions.assertEquals(Kumar, parsedName.get().getLastName());
     }
 
     @Test
     public void testParseThreePartName() {
-        String nameToParse = "CH Ravindra Reddy";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("CH Ravindra", parsedName.get().getFirstName());
-        Assertions.assertEquals("Reddy", parsedName.get().getLastName());
+        testName("CH Ravindra Reddy", "CH Ravindra", "Reddy");
     }
 
     @Test
     public void testParseThreePartNameWithComma() {
-        String nameToParse = "Reddy, CH Ravindra";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("CH Ravindra", parsedName.get().getFirstName());
-        Assertions.assertEquals("Reddy", parsedName.get().getLastName());
+        testName("Reddy, CH Ravindra", "CH Ravindra", "Reddy");
     }
 
     @Test
     public void testParseTwoPartNameWithComma() {
-        String nameToParse = "Raju, Banothu";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Banothu", parsedName.get().getFirstName());
-        Assertions.assertEquals("Raju", parsedName.get().getLastName());
+        testName("Raju, Banothu", "Banothu", "Raju");
     }
 
     @Test
     public void testParseTwoPartNameWithDot() {
-        String nameToParse = "R. Jaiswal";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("R.", parsedName.get().getFirstName());
-        Assertions.assertEquals("Jaiswal", parsedName.get().getLastName());
+        testName("R. Jaiswal", "R.", "Jaiswal");
     }
 
     @Test
     public void testParseTwoPartNameWithDotAndComma() {
-        String nameToParse = "Jaiswal, R.";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("R.", parsedName.get().getFirstName());
-        Assertions.assertEquals("Jaiswal", parsedName.get().getLastName());
+        testName("Jaiswal, R.", "R.", "Jaiswal");
     }
 
     @Test
     public void testParseTwoPartNameWithNonEnglishLetters() {
-        String nameToParse = "Søren Ålbæk";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Søren", parsedName.get().getFirstName());
-        Assertions.assertEquals("Ålbæk", parsedName.get().getLastName());
+        testName("Søren Ålbæk", "Søren", "Ålbæk");
     }
 
     @Test
     public void testParseTwoPartNameWithApostrophe() {
-        String nameToParse = "Antonio d'Angelo";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Antonio", parsedName.get().getFirstName());
-        Assertions.assertEquals("d'Angelo", parsedName.get().getLastName());
+        testName("Antonio d'Angelo", "Antonio", "d'Angelo");
     }
 
     @Test
     public void testParseNameWithDash() {
-        String nameToParse = "Lars Larsen-Jensen";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Lars", parsedName.get().getFirstName());
-        Assertions.assertEquals("Larsen-Jensen", parsedName.get().getLastName());
+        testName("Lars Larsen-Jensen", "Lars", "Larsen-Jensen");
     }
 
     @Test
     public void testParseDutchName() {
-        String nameToParse = "Dutch van der Linde";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Dutch", parsedName.get().getFirstName());
-        Assertions.assertEquals("van der Linde", parsedName.get().getLastName());
+        testName("Dutch van der Linde", "Dutch", "van der Linde");
     }
 
     @Test
     public void testParseGermanName() {
-        String nameToParse = "Günther von Berliner";
-        AuthorNameParser authorNameParser = new AuthorNameParser();
-        Optional<ParsedName> parsedName = authorNameParser.parseName(nameToParse);
-
-        Assertions.assertTrue(parsedName.isPresent());
-        Assertions.assertEquals("Günther", parsedName.get().getFirstName());
-        Assertions.assertEquals("von Berliner", parsedName.get().getLastName());
+        testName("Günther von Berliner", "Günther", "von Berliner");
     }
 
     @Test
